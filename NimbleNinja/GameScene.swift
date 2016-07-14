@@ -11,7 +11,12 @@ import SpriteKit
 class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        backgroundColor = UIColor.whiteColor()  
+        backgroundColor = UIColor(red: 159/255, green: 201/255, blue: 244/255, alpha: 1)
+        
+        let ground = TSMovingGround(size: CGSizeMake(view.frame.width, 20))
+        ground.position = view.center
+        addChild(ground)
+        
         
     }
     
