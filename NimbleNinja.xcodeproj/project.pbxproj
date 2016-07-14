@@ -16,6 +16,7 @@
 		E2DF62AD1D3834C7001E9252 /* NimbleNinjaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DF62AC1D3834C7001E9252 /* NimbleNinjaTests.swift */; };
 		E2DF62B81D3834C7001E9252 /* NimbleNinjaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DF62B71D3834C7001E9252 /* NimbleNinjaUITests.swift */; };
 		E2DF62C61D383B75001E9252 /* TSMovingGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DF62C51D383B75001E9252 /* TSMovingGround.swift */; };
+		E2DF62C81D384FEC001E9252 /* TSHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DF62C71D384FEC001E9252 /* TSHero.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		E2DF62B71D3834C7001E9252 /* NimbleNinjaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NimbleNinjaUITests.swift; sourceTree = "<group>"; };
 		E2DF62B91D3834C7001E9252 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2DF62C51D383B75001E9252 /* TSMovingGround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSMovingGround.swift; sourceTree = "<group>"; };
+		E2DF62C71D384FEC001E9252 /* TSHero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSHero.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				E2DF62A01D3834C7001E9252 /* LaunchScreen.storyboard */,
 				E2DF62A31D3834C7001E9252 /* Info.plist */,
 				E2DF62C51D383B75001E9252 /* TSMovingGround.swift */,
+				E2DF62C71D384FEC001E9252 /* TSHero.swift */,
 			);
 			path = NimbleNinja;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			files = (
 				E2DF62981D3834C7001E9252 /* GameScene.swift in Sources */,
 				E2DF62C61D383B75001E9252 /* TSMovingGround.swift in Sources */,
+				E2DF62C81D384FEC001E9252 /* TSHero.swift in Sources */,
 				E2DF629A1D3834C7001E9252 /* GameViewController.swift in Sources */,
 				E2DF62941D3834C7001E9252 /* AppDelegate.swift in Sources */,
 			);
