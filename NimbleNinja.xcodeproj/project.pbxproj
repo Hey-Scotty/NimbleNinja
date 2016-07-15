@@ -17,6 +17,9 @@
 		E2DF62B81D3834C7001E9252 /* NimbleNinjaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DF62B71D3834C7001E9252 /* NimbleNinjaUITests.swift */; };
 		E2DF62C61D383B75001E9252 /* TSMovingGround.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DF62C51D383B75001E9252 /* TSMovingGround.swift */; };
 		E2DF62C81D384FEC001E9252 /* TSHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DF62C71D384FEC001E9252 /* TSHero.swift */; };
+		E2DF62CA1D389DD0001E9252 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DF62C91D389DD0001E9252 /* Constants.swift */; };
+		E2DF62CC1D38A740001E9252 /* TSCloudGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DF62CB1D38A740001E9252 /* TSCloudGen.swift */; };
+		E2DF62CE1D38A823001E9252 /* TSCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DF62CD1D38A823001E9252 /* TSCloud.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		E2DF62B91D3834C7001E9252 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2DF62C51D383B75001E9252 /* TSMovingGround.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSMovingGround.swift; sourceTree = "<group>"; };
 		E2DF62C71D384FEC001E9252 /* TSHero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSHero.swift; sourceTree = "<group>"; };
+		E2DF62C91D389DD0001E9252 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E2DF62CB1D38A740001E9252 /* TSCloudGen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSCloudGen.swift; sourceTree = "<group>"; };
+		E2DF62CD1D38A823001E9252 /* TSCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSCloud.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,12 +111,14 @@
 			children = (
 				E2DF62931D3834C7001E9252 /* AppDelegate.swift */,
 				E2DF62971D3834C7001E9252 /* GameScene.swift */,
+				E2DF62C91D389DD0001E9252 /* Constants.swift */,
 				E2DF62991D3834C7001E9252 /* GameViewController.swift */,
 				E2DF629B1D3834C7001E9252 /* Main.storyboard */,
 				E2DF629E1D3834C7001E9252 /* Assets.xcassets */,
 				E2DF62A01D3834C7001E9252 /* LaunchScreen.storyboard */,
 				E2DF62A31D3834C7001E9252 /* Info.plist */,
-				E2DF62C51D383B75001E9252 /* TSMovingGround.swift */,
+				E2DF62CD1D38A823001E9252 /* TSCloud.swift */,
+				E2DF62CF1D38A83F001E9252 /* Cloud Generation */,
 				E2DF62C71D384FEC001E9252 /* TSHero.swift */,
 			);
 			path = NimbleNinja;
@@ -132,6 +140,15 @@
 				E2DF62B91D3834C7001E9252 /* Info.plist */,
 			);
 			path = NimbleNinjaUITests;
+			sourceTree = "<group>";
+		};
+		E2DF62CF1D38A83F001E9252 /* Cloud Generation */ = {
+			isa = PBXGroup;
+			children = (
+				E2DF62CB1D38A740001E9252 /* TSCloudGen.swift */,
+				E2DF62C51D383B75001E9252 /* TSMovingGround.swift */,
+			);
+			name = "Cloud Generation";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,9 +284,12 @@
 			files = (
 				E2DF62981D3834C7001E9252 /* GameScene.swift in Sources */,
 				E2DF62C61D383B75001E9252 /* TSMovingGround.swift in Sources */,
+				E2DF62CC1D38A740001E9252 /* TSCloudGen.swift in Sources */,
 				E2DF62C81D384FEC001E9252 /* TSHero.swift in Sources */,
 				E2DF629A1D3834C7001E9252 /* GameViewController.swift in Sources */,
 				E2DF62941D3834C7001E9252 /* AppDelegate.swift in Sources */,
+				E2DF62CE1D38A823001E9252 /* TSCloud.swift in Sources */,
+				E2DF62CA1D389DD0001E9252 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

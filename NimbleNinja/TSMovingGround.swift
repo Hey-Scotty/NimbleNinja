@@ -34,7 +34,7 @@ class TSMovingGround: SKSpriteNode{
             segment.position = CGPointMake(CGFloat(i)*segment.size.width, 0);
             addChild(segment);
      
-            
+ 
         }
         
     }
