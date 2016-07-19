@@ -9,3 +9,4 @@
 import Foundation
 import UIKit
 let kTSGroundHeight : CGFloat = 20.0;
+let kDefaultXToMovePerSecond: CGFloat = 10.0;

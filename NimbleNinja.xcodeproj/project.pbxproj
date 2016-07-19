@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E287E6891D3DA75300B6BC90 /* TSWallGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287E6881D3DA75300B6BC90 /* TSWallGen.swift */; };
+		E287E68B1D3DA76F00B6BC90 /* TSWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287E68A1D3DA76F00B6BC90 /* TSWall.swift */; };
 		E2DF62941D3834C7001E9252 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DF62931D3834C7001E9252 /* AppDelegate.swift */; };
 		E2DF62981D3834C7001E9252 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DF62971D3834C7001E9252 /* GameScene.swift */; };
 		E2DF629A1D3834C7001E9252 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DF62991D3834C7001E9252 /* GameViewController.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E287E6881D3DA75300B6BC90 /* TSWallGen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSWallGen.swift; sourceTree = "<group>"; };
+		E287E68A1D3DA76F00B6BC90 /* TSWall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSWall.swift; sourceTree = "<group>"; };
 		E2DF62901D3834C7001E9252 /* NimbleNinja.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NimbleNinja.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DF62931D3834C7001E9252 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2DF62971D3834C7001E9252 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -86,6 +90,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E287E68C1D3DA7AB00B6BC90 /* Wall Generation */ = {
+			isa = PBXGroup;
+			children = (
+				E287E68A1D3DA76F00B6BC90 /* TSWall.swift */,
+				E287E6881D3DA75300B6BC90 /* TSWallGen.swift */,
+			);
+			name = "Wall Generation";
+			sourceTree = "<group>";
+		};
+		E287E68D1D3DA7DA00B6BC90 /* Other Models */ = {
+			isa = PBXGroup;
+			children = (
+				E2DF62C51D383B75001E9252 /* TSMovingGround.swift */,
+				E2DF62C71D384FEC001E9252 /* TSHero.swift */,
+			);
+			name = "Other Models";
+			sourceTree = "<group>";
+		};
+		E287E68E1D3DA80700B6BC90 /* Main Screen */ = {
+			isa = PBXGroup;
+			children = (
+				E2DF62931D3834C7001E9252 /* AppDelegate.swift */,
+				E2DF62971D3834C7001E9252 /* GameScene.swift */,
+				E2DF62991D3834C7001E9252 /* GameViewController.swift */,
+				E2DF629B1D3834C7001E9252 /* Main.storyboard */,
+				E2DF62A01D3834C7001E9252 /* LaunchScreen.storyboard */,
+			);
+			name = "Main Screen";
+			sourceTree = "<group>";
+		};
 		E2DF62871D3834C7001E9252 = {
 			isa = PBXGroup;
 			children = (
@@ -109,17 +143,13 @@
 		E2DF62921D3834C7001E9252 /* NimbleNinja */ = {
 			isa = PBXGroup;
 			children = (
-				E2DF62931D3834C7001E9252 /* AppDelegate.swift */,
-				E2DF62971D3834C7001E9252 /* GameScene.swift */,
 				E2DF62C91D389DD0001E9252 /* Constants.swift */,
-				E2DF62991D3834C7001E9252 /* GameViewController.swift */,
-				E2DF629B1D3834C7001E9252 /* Main.storyboard */,
+				E287E68E1D3DA80700B6BC90 /* Main Screen */,
 				E2DF629E1D3834C7001E9252 /* Assets.xcassets */,
-				E2DF62A01D3834C7001E9252 /* LaunchScreen.storyboard */,
 				E2DF62A31D3834C7001E9252 /* Info.plist */,
-				E2DF62CD1D38A823001E9252 /* TSCloud.swift */,
+				E287E68D1D3DA7DA00B6BC90 /* Other Models */,
+				E287E68C1D3DA7AB00B6BC90 /* Wall Generation */,
 				E2DF62CF1D38A83F001E9252 /* Cloud Generation */,
-				E2DF62C71D384FEC001E9252 /* TSHero.swift */,
 			);
 			path = NimbleNinja;
 			sourceTree = "<group>";
@@ -145,8 +175,8 @@
 		E2DF62CF1D38A83F001E9252 /* Cloud Generation */ = {
 			isa = PBXGroup;
 			children = (
+				E2DF62CD1D38A823001E9252 /* TSCloud.swift */,
 				E2DF62CB1D38A740001E9252 /* TSCloudGen.swift */,
-				E2DF62C51D383B75001E9252 /* TSMovingGround.swift */,
 			);
 			name = "Cloud Generation";
 			sourceTree = "<group>";
@@ -283,10 +313,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2DF62981D3834C7001E9252 /* GameScene.swift in Sources */,
+				E287E6891D3DA75300B6BC90 /* TSWallGen.swift in Sources */,
 				E2DF62C61D383B75001E9252 /* TSMovingGround.swift in Sources */,
 				E2DF62CC1D38A740001E9252 /* TSCloudGen.swift in Sources */,
 				E2DF62C81D384FEC001E9252 /* TSHero.swift in Sources */,
 				E2DF629A1D3834C7001E9252 /* GameViewController.swift in Sources */,
+				E287E68B1D3DA76F00B6BC90 /* TSWall.swift in Sources */,
 				E2DF62941D3834C7001E9252 /* AppDelegate.swift in Sources */,
 				E2DF62CE1D38A823001E9252 /* TSCloud.swift in Sources */,
 				E2DF62CA1D389DD0001E9252 /* Constants.swift in Sources */,
@@ -516,6 +548,7 @@
 				E2DF62BE1D3834C7001E9252 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E2DF62BF1D3834C7001E9252 /* Build configuration list for PBXNativeTarget "NimbleNinjaTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +557,7 @@
 				E2DF62C11D3834C7001E9252 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E2DF62C21D3834C7001E9252 /* Build configuration list for PBXNativeTarget "NimbleNinjaUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +566,7 @@
 				E2DF62C41D3834C7001E9252 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
