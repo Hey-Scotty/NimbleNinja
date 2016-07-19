@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate{
     var movingGround: TSMovingGround!
     var hero: TSHero!
     var isStarted = false;
@@ -43,8 +43,20 @@ class GameScene: SKScene {
         wallGen.position = view!.center
         addChild(wallGen)
         
+        //add start label
+        let tapToStartLabel = SKLabelNode(text: "Tap To Start!")
+        tapToStartLabel.name = "tapToStartLabel"
+        tapToStartLabel.position.x = view!.center.x
+        tapToStartLabel.position.y = view!.center.y + 50
+        tapToStartLabel.fontName = "Helvetica"
+        tapToStartLabel.fontColor = UIColor.blackColor()
+        addChild(tapToStartLabel)
+        
+        //add physics world
+        physicsWorld.contactDelegate = self; //delegate: a promise that it will implement methods. Java: a abstact class & method implementation
         
     }
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         //movingGround.start()
         if(!isStarted){
@@ -58,11 +70,18 @@ class GameScene: SKScene {
         }
     }
     func start(){
+        let tapToStartLabel = childNodeWithName("tapToStartLabel")
+        tapToStartLabel?.removeFromParent()
         movingGround.start()
         hero.stopBreathing()
         hero.startRunning()
         wallGen.startGeneratingWallEvery(1)
         
+    }
+    //MARK: SKPhysics contact Delegate
+    func didBeginContact(contact: SKPhysicsContact) {
+        Swift.print("contact is working\n")
+
     }
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */

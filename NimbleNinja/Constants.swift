@@ -8,5 +8,11 @@
 
 import Foundation
 import UIKit
+
+//configuration
 let kTSGroundHeight : CGFloat = 20.0;
-let kDefaultXToMovePerSecond: CGFloat = 10.0;
+//Initial variables
+let kDefaultXToMovePerSecond: CGFloat = 320.0;
+//collision detection
+let heroCategory: UInt32 = 0x1 << 0
+let wallCategory: UInt32 = 0x1 << 1

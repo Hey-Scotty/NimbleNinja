@@ -18,14 +18,27 @@ class TSHero: SKSpriteNode{
     var isOnTop = true
     
     init(){
-        super.init(texture:nil, color: UIColor.clearColor(), size: CGSizeMake(32, 44))
-        body = SKSpriteNode(color: UIColor.blackColor(),size: CGSizeMake(self.frame.size.width, 40))
-        body.position = CGPointMake(0,2)
-        addChild(body)
-        initFacialFeatures()
-        initArm()
-        initFeet()
+        let size = CGSizeMake(32, 44)
+        super.init(texture:nil, color: UIColor.clearColor(), size: size)
         
+        loadAppearence()
+        loadPhysicsBody(size)
+    }
+    private func loadAppearence(){
+    body = SKSpriteNode(color: UIColor.blackColor(),size: CGSizeMake(self.frame.size.width, 40))
+    body.position = CGPointMake(0,2)
+    addChild(body)
+    initFacialFeatures()
+    initArm()
+    initFeet()
+    }
+    
+    //compared to java this has been extremely streamlined vs using boolean checks with rectangles and loops
+    private func loadPhysicsBody(size: CGSize){
+        physicsBody = SKPhysicsBody(rectangleOfSize: size)
+        physicsBody?.categoryBitMask = heroCategory
+        physicsBody?.contactTestBitMask = wallCategory
+        physicsBody?.affectedByGravity = false //maybe useful when implementing jump feature
     }
     private func initFacialFeatures(){
         let face = SKSpriteNode(color: skinColor, size: CGSizeMake(self.frame.size.width, 12))

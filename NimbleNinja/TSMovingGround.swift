@@ -43,7 +43,8 @@ class TSMovingGround: SKSpriteNode{
         fatalError("init(coder:) has not been implemented")
     }
     func start(){
-        let moveLeft = SKAction.moveByX(-frame.size.width/2, y: 0, duration: 1.0)
+        let adjustedDuration = NSTimeInterval(frame.size.width / kDefaultXToMovePerSecond)//compensates for ground skipping
+        let moveLeft = SKAction.moveByX(-frame.size.width/2, y: 0, duration: adjustedDuration/2)
         let resetPosition = SKAction.moveToX(0, duration: 0)
         //^^facinating allows you to chain actions in a specific order based on the position in the array parameter passed to the sequence func
         let moveSequence = SKAction.sequence([moveLeft, resetPosition])
