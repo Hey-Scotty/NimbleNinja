@@ -11,12 +11,16 @@ import SpriteKit
 
 class TSWallGen: SKSpriteNode{
     var generationTimer: NSTimer?
+    var walls = [TSWall]()
     
-    func startGeneratingWallEvery(seconds: NSTimeInterval){
+    internal func startGeneratingWallEvery(seconds: NSTimeInterval){
         generationTimer = NSTimer.scheduledTimerWithTimeInterval(seconds, target: self, selector: "generateWall", userInfo: nil, repeats: true)
         
     }
-    func generateWall(){
+    private func stopGenerating(){
+        generationTimer?.invalidate()
+    }
+    private func generateWall(){
         var scale: CGFloat
         let rand = arc4random_uniform(2)
         if rand == 0 {
@@ -27,6 +31,13 @@ class TSWallGen: SKSpriteNode{
         let wall = TSWall()
         wall.position.x = size.width/2 + wall.size.width/2
         wall.position.y = scale * (kTSGroundHeight/2 - wall.size.height/2)
+        walls.append(wall)//can be used on clouds to increase speed also
         addChild(wall)
+    }
+    internal func stopWalls(){
+        stopGenerating()
+        for wall in walls{// pass by reference utilized well 
+            wall.stopMoving ();
+        }
     }
 }

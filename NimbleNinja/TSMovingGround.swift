@@ -42,7 +42,8 @@ class TSMovingGround: SKSpriteNode{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func start(){
+    
+    internal func start(){
         let adjustedDuration = NSTimeInterval(frame.size.width / kDefaultXToMovePerSecond)//compensates for ground skipping
         let moveLeft = SKAction.moveByX(-frame.size.width/2, y: 0, duration: adjustedDuration/2)
         let resetPosition = SKAction.moveToX(0, duration: 0)
@@ -53,8 +54,8 @@ class TSMovingGround: SKSpriteNode{
         //even better way of solving repeating runAction
         runAction(SKAction.repeatActionForever(moveSequence))
         // from what can be inferred this behaves like a thread duration being the ticks()
-        
-        
-        
+    }
+    internal func stop(){
+        removeAllActions()
     }
 }

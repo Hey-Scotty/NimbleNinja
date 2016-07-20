@@ -129,6 +129,11 @@ class TSHero: SKSpriteNode{
     internal func stopBreathing(){
         body.removeAllActions()
     }
+    internal func stopAll(){
+        body.removeAllActions()
+        leftFoot.removeAllActions()
+        rightFoot.removeAllActions()
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

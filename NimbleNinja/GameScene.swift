@@ -11,7 +11,8 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate{
     var movingGround: TSMovingGround!
     var hero: TSHero!
-    var isStarted = false;
+    var isStarted = false
+    var isGameOver = false
     var cloudGen: TSCloudGen!
     var wallGen: TSWallGen!
     override func didMoveToView(view: SKView) {
@@ -58,6 +59,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if isGameOver {
+            restart()
+        }
         //movingGround.start()
         if(!isStarted){
             start()
@@ -69,6 +73,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             hero.flip()
         }
     }
+    func restart(){
+        cloudGen.stopGenerating()
+        let newScene = GameScene(size: view!.bounds.size)
+        newScene.scaleMode = .AspectFill
+        view!.presentScene(newScene)
+    }
+    //MARK: Game life cycle
     func start(){
         let tapToStartLabel = childNodeWithName("tapToStartLabel")
         tapToStartLabel?.removeFromParent()
@@ -78,10 +89,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         wallGen.startGeneratingWallEvery(1)
         
     }
+    func gameOver(){
+        isGameOver = true;
+        
+        //stopEverything
+        hero.physicsBody = nil;
+        wallGen.stopWalls()
+        movingGround.stop()
+        //create GameOver label
+        let gameOverLabel = SKLabelNode(text: "Game Over!")
+        gameOverLabel.fontColor = UIColor.blackColor()
+        gameOverLabel.fontName = "Helvetica"
+        gameOverLabel.position.x = view!.center.x
+        gameOverLabel.position.y = view!.center.y + 40
+        gameOverLabel.fontSize = 22;
+        addChild(gameOverLabel)
+    }
     //MARK: SKPhysics contact Delegate
     func didBeginContact(contact: SKPhysicsContact) {
-        Swift.print("contact is working\n")
-
+        gameOver()
     }
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */

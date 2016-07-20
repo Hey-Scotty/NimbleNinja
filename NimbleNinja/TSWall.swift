@@ -20,9 +20,12 @@ class TSWall: SKSpriteNode{
         startMoving()
         loadPhysicsBody(size)
     }
-    func startMoving(){
+    internal func startMoving(){
         let moveLeft = SKAction.moveByX(-kDefaultXToMovePerSecond,y: 0, duration: 1)
         runAction(SKAction.repeatActionForever(moveLeft))
+    }
+    internal func stopMoving(){
+        removeAllActions()
     }
     private func loadPhysicsBody(size: CGSize){
         physicsBody = SKPhysicsBody(rectangleOfSize: size)

@@ -28,7 +28,7 @@ import SpriteKit
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
-        func startMoving(speed: CGFloat){
+        internal func startMoving(speed: CGFloat){
             moveLeft = SKAction.moveByX(speed, y: 0, duration: 1)
             runAction(SKAction.repeatActionForever(moveLeft))
         }
