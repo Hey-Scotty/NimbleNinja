@@ -20,30 +20,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
     }
     func initGameScreen(){
+        addBackground()
+        addCloudGen()
+        addGround()
+        addNinja()
+        hero.breathe()
+        addWallGen()
+        addStartLabel()
+        addPhysics()
+        
+    }
+    private func addBackground(){
         /* Setup your scene here */
         backgroundColor = UIColor(red: 159/255, green: 201/255, blue: 244/255, alpha: 1)
+    }
+    private func addCloudGen(){
         //cloud gen
         cloudGen = TSCloudGen(color: UIColor.clearColor(), size: view!.frame.size)
         cloudGen.position = view!.center
         addChild(cloudGen)
         cloudGen.populate(7)
         cloudGen.startGeneratingWithSpawnTime(4)
+    }
+    private func addGround(){
         //Add ground
         //refractor not currently working in swift 2.0 must click variable and edit scope! :D
         movingGround = TSMovingGround(size: CGSizeMake(view!.frame.width, kTSGroundHeight))
         movingGround.position = CGPointMake(0, view!.frame.size.height/2)
         addChild(movingGround)
-        
+    }
+    private func addNinja(){
         //add Ninja
         hero = TSHero();
         hero.position = CGPointMake(70, movingGround.position.y + movingGround.frame.size.height/2 + hero.frame.size.height/2)
         addChild(hero)
-        hero.breathe()
+    }
+    private func addWallGen(){
         //add WallGen
         wallGen = TSWallGen(color: UIColor.clearColor(), size: view!.frame.size)
         wallGen.position = view!.center
         addChild(wallGen)
-        
+
+    }
+    private func addStartLabel(){
         //add start label
         let tapToStartLabel = SKLabelNode(text: "Tap To Start!")
         tapToStartLabel.name = "tapToStartLabel"
@@ -51,13 +70,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         tapToStartLabel.position.y = view!.center.y + 50
         tapToStartLabel.fontName = "Helvetica"
         tapToStartLabel.fontColor = UIColor.blackColor()
+        tapToStartLabel.removeFromParent()
         addChild(tapToStartLabel)
-        
+    }
+    private func addPhysics(){
         //add physics world
         physicsWorld.contactDelegate = self; //delegate: a promise that it will implement methods. Java: a abstact class & method implementation
         
     }
-    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if isGameOver {
             restart()
@@ -103,6 +123,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         gameOverLabel.position.x = view!.center.x
         gameOverLabel.position.y = view!.center.y + 40
         gameOverLabel.fontSize = 22;
+        gameOverLabel.removeFromParent()
         addChild(gameOverLabel)
     }
     //MARK: SKPhysics contact Delegate
