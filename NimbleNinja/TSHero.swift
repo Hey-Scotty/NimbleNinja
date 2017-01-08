@@ -16,17 +16,20 @@ class TSHero: SKSpriteNode{
     var rightFoot:SKSpriteNode!
     let skinColor = UIColor(red: 207/255, green: 193/255, blue: 168/255, alpha: 1.0)
     var isOnTop = true
-    
+    var upOrientation = true
+    var downOrientation = false
+    var firstFlip = true;
+    var flipTimer: TimeInterval?
     init(){
-        let size = CGSizeMake(32, 44)
-        super.init(texture:nil, color: UIColor.clearColor(), size: size)
+        let size = CGSize(width: 32, height: 44)
+        super.init(texture:nil, color: UIColor.clear, size: size)
         
         loadAppearence()
         loadPhysicsBody(size)
     }
-    private func loadAppearence(){
-    body = SKSpriteNode(color: UIColor.blackColor(),size: CGSizeMake(self.frame.size.width, 40))
-    body.position = CGPointMake(0,2)
+    fileprivate func loadAppearence(){
+    body = SKSpriteNode(color: UIColor.black,size: CGSize(width: self.frame.size.width, height: 40))
+    body.position = CGPoint(x: 0,y: 2)
     addChild(body)
     initFacialFeatures()
     initArm()
@@ -34,53 +37,53 @@ class TSHero: SKSpriteNode{
     }
     
     //compared to java this has been extremely streamlined vs using boolean checks with rectangles and loops
-    private func loadPhysicsBody(size: CGSize){
-        physicsBody = SKPhysicsBody(rectangleOfSize: size)
+    fileprivate func loadPhysicsBody(_ size: CGSize){
+        physicsBody = SKPhysicsBody(rectangleOf: size)
         physicsBody?.categoryBitMask = heroCategory
         physicsBody?.contactTestBitMask = wallCategory
         physicsBody?.affectedByGravity = false //maybe useful when implementing jump feature
     }
-    private func initFacialFeatures(){
-        let face = SKSpriteNode(color: skinColor, size: CGSizeMake(self.frame.size.width, 12))
-        face.position = CGPointMake(0,6)
+    fileprivate func initFacialFeatures(){
+        let face = SKSpriteNode(color: skinColor, size: CGSize(width: self.frame.size.width, height: 12))
+        face.position = CGPoint(x: 0,y: 6)
         body.addChild(face)
         
-        let eyeColor = UIColor.whiteColor()
-        let leftEye = SKSpriteNode(color:eyeColor, size: CGSizeMake(6,6))
+        let eyeColor = UIColor.white
+        let leftEye = SKSpriteNode(color:eyeColor, size: CGSize(width: 6,height: 6))
         let rightEye = leftEye.copy() as! SKSpriteNode
-        let pupil = SKSpriteNode(color: UIColor.blackColor(), size: CGSizeMake(3, 3))
+        let pupil = SKSpriteNode(color: UIColor.black, size: CGSize(width: 3, height: 3))
         
-        pupil.position = CGPointMake(2, 0)
+        pupil.position = CGPoint(x: 2, y: 0)
         leftEye.addChild(pupil)
         rightEye.addChild(pupil.copy() as! SKSpriteNode)
         
-        leftEye.position = CGPointMake(-4, 0)
+        leftEye.position = CGPoint(x: -4, y: 0)
         face.addChild(leftEye)
-        rightEye.position = CGPointMake(14, 0)
+        rightEye.position = CGPoint(x: 14, y: 0)
         face.addChild(rightEye)
         
-        let eyebrows = SKSpriteNode(color: UIColor.blackColor(), size: CGSizeMake(11, 1))
-        eyebrows.position = CGPointMake(-1, leftEye.size.height / 2)
+        let eyebrows = SKSpriteNode(color: UIColor.black, size: CGSize(width: 11, height: 1))
+        eyebrows.position = CGPoint(x: -1, y: leftEye.size.height / 2)
         leftEye.addChild(eyebrows)
         rightEye.addChild(eyebrows.copy() as! SKSpriteNode)
 
     }
-    private func initArm(){
+    fileprivate func initArm(){
         let armColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1.0)
-        arm = SKSpriteNode(color: armColor, size: CGSizeMake(8, 14))
-        arm.anchorPoint = CGPointMake(0.5, 0.9)
-        arm.position = CGPointMake(-10, -7)
+        arm = SKSpriteNode(color: armColor, size: CGSize(width: 8, height: 14))
+        arm.anchorPoint = CGPoint(x: 0.5, y: 0.9)
+        arm.position = CGPoint(x: -10, y: -7)
         body.addChild(arm)
         
-        let hand = SKSpriteNode(color: skinColor, size: CGSizeMake(arm.size.width, 5))
-        hand.position = CGPointMake(0, -arm.size.height*0.9 + hand.size.height/2)// weird math to compensate for arm anchor offset 
+        let hand = SKSpriteNode(color: skinColor, size: CGSize(width: arm.size.width, height: 5))
+        hand.position = CGPoint(x: 0, y: -arm.size.height*0.9 + hand.size.height/2)// weird math to compensate for arm anchor offset 
         arm.addChild(hand)
         
         
     }
-    private func initFeet(){
-        leftFoot = SKSpriteNode(color: UIColor.blackColor(), size: CGSizeMake(9, 4))
-        leftFoot.position = CGPointMake(-6, -size.height/2 + leftFoot.size.height/2)
+    fileprivate func initFeet(){
+        leftFoot = SKSpriteNode(color: UIColor.black, size: CGSize(width: 9, height: 4))
+        leftFoot.position = CGPoint(x: -6, y: -size.height/2 + leftFoot.size.height/2)
         addChild(leftFoot)
         
         rightFoot = leftFoot.copy() as! SKSpriteNode
@@ -88,43 +91,71 @@ class TSHero: SKSpriteNode{
         addChild(rightFoot)
     }
     internal func breathe(){
-        let breatheOut = SKAction.moveByX(0, y: -3, duration: 0.5)
-        let breatheIn = SKAction.moveByX(0, y: 3, duration: 0.5)
+        let breatheOut = SKAction.moveBy(x: 0, y: -3, duration: 0.5)
+        let breatheIn = SKAction.moveBy(x: 0, y: 3, duration: 0.5)
         let breatheSequence = SKAction.sequence([breatheOut, breatheIn])
-        body.runAction(SKAction.repeatActionForever(breatheSequence))
+        body.run(SKAction.repeatForever(breatheSequence))
     }
     internal func startRunning(){
-        let rotateBack = SKAction.rotateByAngle(CGFloat(-M_PI)/2, duration: 0.1)
-        arm.runAction(rotateBack)
+        let rotateBack = SKAction.rotate(byAngle: CGFloat(-M_PI)/2, duration: 0.1)
+        arm.run(rotateBack)
         performOneRunCycle()
         
     }
     internal func flip(){
-        isOnTop = !isOnTop
         var scale: CGFloat!
-        if !isOnTop{
-            scale = -1.0
+        if(firstFlip){
+            isOnTop = !isOnTop
+            if !isOnTop{
+                scale = -1.0
+            }
+            else{
+                scale = 1.0
+            }
+            
+            let translate = SKAction.moveBy(x: 0, y: (scale*(size.height + kTSGroundHeight)), duration: 0.1)
+            let flip = SKAction.scaleY(to: scale, duration: 0.1)
+            run(translate)
+            run(flip)
+            flipTimer = CACurrentMediaTime()
+            firstFlip = false;
         }
-        else{
-            scale = 1.0
+        else if (CACurrentMediaTime() - flipTimer! > 0.2){
+            print(CACurrentMediaTime() - flipTimer!)
+            isOnTop = !isOnTop
+            if !isOnTop{
+                scale = -1.0
+            }
+            else{
+                scale = 1.0
+            }
+            
+            let translate = SKAction.moveBy(x: 0, y: (scale*(size.height + kTSGroundHeight)), duration: 0.1)
+            let flip = SKAction.scaleY(to: scale, duration: 0.1)
+            run(translate)
+            run(flip)
+            flipTimer = CACurrentMediaTime()
         }
-        let translate = SKAction.moveByX(0, y: (scale*(size.height + kTSGroundHeight)), duration: 0.1)
-        let flip = SKAction.scaleYTo(scale, duration: 0.1)
-        runAction(translate)
-        runAction(flip)
+        
+        
+        
     }
+    
     internal func performOneRunCycle(){
-        let up = SKAction.moveByX(0, y: 2, duration: 0.05)
-        let down = SKAction.moveByX(0, y: -2, duration: 0.05)
+        let up = SKAction.moveBy(x: 0, y: 2, duration: 0.05)
+        let down = SKAction.moveBy(x: 0, y: -2, duration: 0.05)
         //block
-        leftFoot.runAction(up, completion: { () -> Void in
-            self.leftFoot.runAction(down)
-            self.rightFoot.runAction(up, completion: { () -> Void in
-                self.rightFoot.runAction(down, completion: { () -> Void in
+        leftFoot.run(up, completion: { () -> Void in
+            self.leftFoot.run(down)
+            self.rightFoot.run(up, completion: { () -> Void in
+                self.rightFoot.run(down, completion: { () -> Void in
                     self.performOneRunCycle() // eligantly recursive ;)
                 })
             })
         })
+    }
+    func finishTrip(){
+         //(scale*(size.height + kTSGroundHeight)
     }
     internal func stopBreathing(){
         body.removeAllActions()

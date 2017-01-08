@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E228599F1E1A057A00790088 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E228599E1E1A057A00790088 /* HUD.swift */; };
+		E22ED7881E1FCA6100EE2096 /* ScalingWallGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22ED7871E1FCA6100EE2096 /* ScalingWallGen.swift */; };
 		E287E6891D3DA75300B6BC90 /* TSWallGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287E6881D3DA75300B6BC90 /* TSWallGen.swift */; };
 		E287E68B1D3DA76F00B6BC90 /* TSWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287E68A1D3DA76F00B6BC90 /* TSWall.swift */; };
 		E2DF62941D3834C7001E9252 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DF62931D3834C7001E9252 /* AppDelegate.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E228599E1E1A057A00790088 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HUD.swift; path = ../HUD.swift; sourceTree = "<group>"; };
+		E22ED7871E1FCA6100EE2096 /* ScalingWallGen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScalingWallGen.swift; sourceTree = "<group>"; };
 		E287E6881D3DA75300B6BC90 /* TSWallGen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSWallGen.swift; sourceTree = "<group>"; };
 		E287E68A1D3DA76F00B6BC90 /* TSWall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSWall.swift; sourceTree = "<group>"; };
 		E2DF62901D3834C7001E9252 /* NimbleNinja.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NimbleNinja.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +99,7 @@
 			children = (
 				E287E68A1D3DA76F00B6BC90 /* TSWall.swift */,
 				E287E6881D3DA75300B6BC90 /* TSWallGen.swift */,
+				E22ED7871E1FCA6100EE2096 /* ScalingWallGen.swift */,
 			);
 			name = "Wall Generation";
 			sourceTree = "<group>";
@@ -111,11 +116,13 @@
 		E287E68E1D3DA80700B6BC90 /* Main Screen */ = {
 			isa = PBXGroup;
 			children = (
+				E2DF62C91D389DD0001E9252 /* Constants.swift */,
 				E2DF62931D3834C7001E9252 /* AppDelegate.swift */,
 				E2DF62971D3834C7001E9252 /* GameScene.swift */,
 				E2DF62991D3834C7001E9252 /* GameViewController.swift */,
 				E2DF629B1D3834C7001E9252 /* Main.storyboard */,
 				E2DF62A01D3834C7001E9252 /* LaunchScreen.storyboard */,
+				E228599E1E1A057A00790088 /* HUD.swift */,
 			);
 			name = "Main Screen";
 			sourceTree = "<group>";
@@ -143,10 +150,9 @@
 		E2DF62921D3834C7001E9252 /* NimbleNinja */ = {
 			isa = PBXGroup;
 			children = (
-				E2DF62C91D389DD0001E9252 /* Constants.swift */,
-				E287E68E1D3DA80700B6BC90 /* Main Screen */,
-				E2DF629E1D3834C7001E9252 /* Assets.xcassets */,
 				E2DF62A31D3834C7001E9252 /* Info.plist */,
+				E2DF629E1D3834C7001E9252 /* Assets.xcassets */,
+				E287E68E1D3DA80700B6BC90 /* Main Screen */,
 				E287E68D1D3DA7DA00B6BC90 /* Other Models */,
 				E287E68C1D3DA7AB00B6BC90 /* Wall Generation */,
 				E2DF62CF1D38A83F001E9252 /* Cloud Generation */,
@@ -244,18 +250,22 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Tevin Scott";
 				TargetAttributes = {
 					E2DF628F1D3834C7001E9252 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = Z77JDD3BWU;
+						LastSwiftMigration = 0820;
 					};
 					E2DF62A71D3834C7001E9252 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = E2DF628F1D3834C7001E9252;
 					};
 					E2DF62B21D3834C7001E9252 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = E2DF628F1D3834C7001E9252;
 					};
 				};
@@ -318,6 +328,8 @@
 				E2DF62CC1D38A740001E9252 /* TSCloudGen.swift in Sources */,
 				E2DF62C81D384FEC001E9252 /* TSHero.swift in Sources */,
 				E2DF629A1D3834C7001E9252 /* GameViewController.swift in Sources */,
+				E22ED7881E1FCA6100EE2096 /* ScalingWallGen.swift in Sources */,
+				E228599F1E1A057A00790088 /* HUD.swift in Sources */,
 				E287E68B1D3DA76F00B6BC90 /* TSWall.swift in Sources */,
 				E2DF62941D3834C7001E9252 /* AppDelegate.swift in Sources */,
 				E2DF62CE1D38A823001E9252 /* TSCloud.swift in Sources */,
@@ -390,8 +402,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -413,7 +427,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -435,8 +449,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -452,9 +468,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -463,10 +480,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Z77JDD3BWU;
 				INFOPLIST_FILE = NimbleNinja/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Scotty.NimbleNinja;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -474,10 +493,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Z77JDD3BWU;
 				INFOPLIST_FILE = NimbleNinja/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Scotty.NimbleNinja;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -490,6 +511,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Scotty.NimbleNinjaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NimbleNinja.app/NimbleNinja";
 			};
 			name = Debug;
@@ -502,6 +524,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Scotty.NimbleNinjaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NimbleNinja.app/NimbleNinja";
 			};
 			name = Release;
@@ -514,6 +537,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Scotty.NimbleNinjaUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = NimbleNinja;
 			};
 			name = Debug;
@@ -525,6 +549,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Scotty.NimbleNinjaUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = NimbleNinja;
 			};
 			name = Release;

@@ -10,56 +10,66 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate{
     var movingGround: TSMovingGround!
-    var hero: TSHero!
+    var hero: TSHero! // make hero of type player
     var isStarted = false;
     var cloudGen: TSCloudGen!
     var wallGen: TSWallGen!
-    override func didMoveToView(view: SKView) {
-        initGameScreen()
+    var headsUpDisplay : HUD!
+    var gameOverTriggered: Bool = false
+    var intervalTime : TimeInterval? = nil
+    var heroTopY: CGFloat?
+    var heroBotY: CGFloat?
+    var isInContact : Bool = false
+    override func didMove(to view: SKView) {
+        initGameScreen(view: view)
         
     }
-    func initGameScreen(){
+    func initGameScreen(view : SKView){
         /* Setup your scene here */
         backgroundColor = UIColor(red: 159/255, green: 201/255, blue: 244/255, alpha: 1)
         //cloud gen
-        cloudGen = TSCloudGen(color: UIColor.clearColor(), size: view!.frame.size)
-        cloudGen.position = view!.center
+        cloudGen = TSCloudGen(color: UIColor.clear, size: view.frame.size)
+        cloudGen.position = view.center
         addChild(cloudGen)
         cloudGen.populate(7)
         cloudGen.startGeneratingWithSpawnTime(4)
         //Add ground
         //refractor not currently working in swift 2.0 must click variable and edit scope! :D
-        movingGround = TSMovingGround(size: CGSizeMake(view!.frame.width, kTSGroundHeight))
-        movingGround.position = CGPointMake(0, view!.frame.size.height/2)
+        movingGround = TSMovingGround(size: CGSize(width: view.frame.width, height: kTSGroundHeight))
+        movingGround.position = CGPoint(x: 0 , y: view.frame.size.height/2)
         addChild(movingGround)
         
         //add Ninja
         hero = TSHero();
-        hero.position = CGPointMake(70, movingGround.position.y + movingGround.frame.size.height/2 + hero.frame.size.height/2)
+        hero.position = CGPoint(x: 70, y: movingGround.position.y + movingGround.frame.size.height/2 + hero.frame.size.height/2)
         addChild(hero)
         hero.breathe()
         //add WallGen
-        wallGen = TSWallGen(color: UIColor.clearColor(), size: view!.frame.size)
-        wallGen.position = view!.center
+        wallGen = TSWallGen(color: UIColor.clear, size: view.frame.size)
+        wallGen.position = view.center
         addChild(wallGen)
-        
-        //add start label
-        let tapToStartLabel = SKLabelNode(text: "Tap To Start!")
-        tapToStartLabel.name = "tapToStartLabel"
-        tapToStartLabel.position.x = view!.center.x
-        tapToStartLabel.position.y = view!.center.y + 50
-        tapToStartLabel.fontName = "Helvetica"
-        tapToStartLabel.fontColor = UIColor.blackColor()
-        addChild(tapToStartLabel)
+        //add HUD valuesc
+        headsUpDisplay = HUD.init(view: view, gameScene: self)
         
         //add physics world
         physicsWorld.contactDelegate = self; //delegate: a promise that it will implement methods. Java: a abstact class & method implementation
-        
+        heroTopY = movingGround.position.y + movingGround.frame.size.height/2 + hero.frame.size.height/2
+        heroBotY = movingGround.position.y - movingGround.frame.size.height/2 - hero.frame.size.height/2
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //movingGround.start()
-        if(!isStarted){
+        
+        let touch:UITouch = touches.first! as UITouch
+        let positionInScene = touch.location(in: self)
+        let touchedNode = self.atPoint(positionInScene)
+
+        if (touchedNode.name != nil) {
+            self.run(SKAction.run(self.pauseGame))
+            print("paused touched")
+        }
+
+        else if(!isStarted){
             start()
             isStarted = true;
         }
@@ -69,21 +79,57 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             hero.flip()
         }
     }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+    }
     func start(){
-        let tapToStartLabel = childNodeWithName("tapToStartLabel")
-        tapToStartLabel?.removeFromParent()
+        headsUpDisplay.gamestarted()
         movingGround.start()
         hero.stopBreathing()
         hero.startRunning()
-        wallGen.startGeneratingWallEvery(1)
+        wallGen.startGeneratingWallEvery()
         
     }
-    //MARK: SKPhysics contact Delegate
-    func didBeginContact(contact: SKPhysicsContact) {
-        Swift.print("contact is working\n")
-
+    func pauseGame(){
+        scene?.view?.isPaused = true
     }
-    override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
+    //MARK: SKPhysics contact Delegate
+    func didBegin(_ contact: SKPhysicsContact) {
+        Swift.print("contact is working\n")
+        isInContact = true;
+        
+    }
+    override func update(_ currentTime: TimeInterval) {
+        if(intervalTime == nil){
+            intervalTime = currentTime;
+        }
+        if(currentTime - intervalTime! > 0.2 ){
+            intervalTime = currentTime;
+        }
+        if(hero.position.x < 0 && !gameOverTriggered){
+            gameOverTriggered = true
+            headsUpDisplay.gameOver()
+            movingGround.stop()
+            wallGen.stopGen()
+            
+        }
+        if(hero.position.y != heroTopY && hero.isOnTop){
+            hero.position.y = heroTopY!
+            isInContact = false;
+        }
+        if(hero.position.y != heroBotY && !hero.isOnTop){
+            hero.position.y = heroBotY!
+            isInContact = false;
+        }
+        
+        if((hero.zRotation != 0 && hero.physicsBody?.angularVelocity == 0)){
+           hero.zRotation = 0
+        }
+        if(wallGen.intervalDivider != wallGen.newInterval){
+            wallGen.stopGen()
+            wallGen.intervalDivider = wallGen.newInterval
+            wallGen.startGeneratingWallEvery()
+        }
+        
     }
 }

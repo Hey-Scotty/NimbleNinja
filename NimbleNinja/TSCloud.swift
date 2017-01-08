@@ -18,9 +18,9 @@ import SpriteKit
             isPlayerRunning = false;
             CLOUDSPEED = moveSpeed
             super.init()
-            let path = CGPathCreateWithEllipseInRect(CGRect(x: 0,y: 0, width: size.width, height: size.height), nil)
+            let path = CGPath(ellipseIn: CGRect(x: 0,y: 0, width: size.width, height: size.height), transform: nil)
             self.path = path
-            fillColor = UIColor.whiteColor()
+            fillColor = UIColor.white
             
             startMoving(CLOUDSPEED)
         }
@@ -28,9 +28,9 @@ import SpriteKit
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
-        func startMoving(speed: CGFloat){
-            moveLeft = SKAction.moveByX(speed, y: 0, duration: 1)
-            runAction(SKAction.repeatActionForever(moveLeft))
+        func startMoving(_ speed: CGFloat){
+            moveLeft = SKAction.moveBy(x: speed, y: 0, duration: 1)
+            run(SKAction.repeatForever(moveLeft))
         }
         func playerIsRunning(){
             isPlayerRunning = true;

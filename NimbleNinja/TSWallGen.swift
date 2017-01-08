@@ -10,23 +10,46 @@ import Foundation
 import SpriteKit
 
 class TSWallGen: SKSpriteNode{
-    var generationTimer: NSTimer?
-    
-    func startGeneratingWallEvery(seconds: NSTimeInterval){
-        generationTimer = NSTimer.scheduledTimerWithTimeInterval(seconds, target: self, selector: "generateWall", userInfo: nil, repeats: true)
+    var generationTimer: Timer?
+    var defaultInterval : TimeInterval = 2 //seconds
+    var intervalDivider : TimeInterval = 1;
+    var newInterval : TimeInterval = 1
+    var wallCounter: Int = 0
+    func startGeneratingWallEvery(){
+        generationTimer = Timer.scheduledTimer(timeInterval: defaultInterval/intervalDivider, target: self, selector: #selector(TSWallGen.generateWall), userInfo: nil, repeats: true)
         
     }
+    func stopGen(){
+        generationTimer?.invalidate()
+    }
     func generateWall(){
+        wallCounter += 1
         var scale: CGFloat
-        let rand = arc4random_uniform(2)
+        let rand = arc4random_uniform(4)
+        var sizing: CGFloat
         if rand == 0 {
             scale = -1.0
-        } else {
-            scale = 1.0
+            sizing = 1
         }
-        let wall = TSWall()
+        else if rand == 1{
+            scale = 1.0
+            sizing = 1
+        }
+
+        else if rand == 2{
+            scale = 1.0
+            sizing = 1.5
+        }
+        else {
+            scale = -1.0
+            sizing = 1.5
+        }
+        let wall = TSWall(sizing)
         wall.position.x = size.width/2 + wall.size.width/2
         wall.position.y = scale * (kTSGroundHeight/2 - wall.size.height/2)
         addChild(wall)
+        if(wallCounter % 5 == 0){
+            newInterval = intervalDivider + 0.2
+        }
     }
 }
