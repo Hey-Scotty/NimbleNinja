@@ -13,7 +13,7 @@ class ScalingWallGen : TSWallGen {
     
     
     func startWallGen(_ seconds : TimeInterval){
-        rampUpTimer = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(TSWallGen.startGeneratingWallEvery), userInfo:ruserok, repeats: true)
+        rampUpTimer = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(TSWallGen.startGeneratingWallEvery), userInfo:nil, repeats: true)
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
