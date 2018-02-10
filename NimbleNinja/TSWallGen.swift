@@ -15,14 +15,15 @@ class TSWallGen: SKSpriteNode{
     var intervalDivider : TimeInterval = 1;
     var newInterval : TimeInterval = 1
     var wallCounter: Int = 0
-    func startGeneratingWallEvery(){
+    
+    @objc func startGeneratingWallEvery(){
         generationTimer = Timer.scheduledTimer(timeInterval: defaultInterval/intervalDivider, target: self, selector: #selector(TSWallGen.generateWall), userInfo: nil, repeats: true)
         
     }
     func stopGen(){
         generationTimer?.invalidate()
     }
-    func generateWall(){
+    @objc func generateWall(){
         wallCounter += 1
         var scale: CGFloat
         let rand = arc4random_uniform(4)

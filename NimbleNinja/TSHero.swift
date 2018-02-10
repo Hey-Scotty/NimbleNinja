@@ -97,7 +97,7 @@ class TSHero: SKSpriteNode{
         body.run(SKAction.repeatForever(breatheSequence))
     }
     internal func startRunning(){
-        let rotateBack = SKAction.rotate(byAngle: CGFloat(-M_PI)/2, duration: 0.1)
+        let rotateBack = SKAction.rotate(byAngle: CGFloat(Double.pi)/2, duration: 0.1)
         arm.run(rotateBack)
         performOneRunCycle()
         

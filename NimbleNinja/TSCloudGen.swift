@@ -29,7 +29,7 @@ class TSCloudGen: SKSpriteNode{
         generationTimer = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(TSCloudGen.generateCloud),userInfo: nil, repeats:true)
     }
     //generates single cloud
-    func generateCloud(){
+    @objc func generateCloud(){
         let x = size.width/2 + CLOUDWIDTH/2
         let y = CGFloat(arc4random_uniform(UInt32(size.height) )) - size.height-2;
         let cloud = TSCloud(size: CGSize(width: CLOUDWIDTH, height: ClOUDHEIGHT), moveSpeed: DEFAULTSPEED);
